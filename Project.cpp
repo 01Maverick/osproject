@@ -37,3 +37,25 @@ bool arrivalsort( const P_d& x ,const P_d& y)
 
 	return false;
 }
+
+bool Numsort( const P_d& x ,const P_d& y)
+{
+	return x.Num < y.Num;
+}
+/*Sorting on the base of Priority if that same then on the base of PID*/
+struct comPare
+{
+	bool operator()(const P_d& x ,const P_d& y)
+	{
+		if( x.Priority > y.Priority )
+			return true;
+		else if( x.Priority < y.Priority )
+			return false;
+		if( x.Pid > y.Pid )
+			return true;
+
+		return false;
+		
+	}
+	
+};
