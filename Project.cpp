@@ -69,3 +69,20 @@ void my_check(vector<P_d> mv)
 	}
 
 }
+
+int main()
+{
+	int i;
+	vector< P_d > input;
+	vector<P_d> input_copy;
+	P_d temp;
+	int pq_process = 0; // for PQ process
+	int rq_process = 0; // for RQ process
+	int A_time;
+	int B_time;
+	int Pid;
+	int Priority;
+	int n;
+	int clock;
+	int total_exection_time = 0;
+	cin>>n;
