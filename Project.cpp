@@ -86,3 +86,14 @@ int main()
 	int clock;
 	int total_exection_time = 0;
 	cin>>n;
+	for( i= 0; i< n; i++ )
+	{
+		cin>>Pid>>A_time>>B_time>>Priority;
+		temp.Num = i+1;
+		temp.A_time = A_time;
+		temp.B_time = B_time;
+		temp.R_time = B_time;
+		temp.Pid = Pid;
+		temp.Priority = Priority;
+		input.push_back(temp);
+	}
