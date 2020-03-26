@@ -97,6 +97,10 @@ int main()
 		input.push_back(temp);
 	}
 	input_copy = input;
+	sort( input.begin(), input.end(), arrivalsort );
+    	//cout<<"arrivalsort : "<<endl;
+    	//my_check( input ); // To check the sort unomment it
+    	total_exection_time = total_exection_time + input[0].A_time;
 	
 
     
