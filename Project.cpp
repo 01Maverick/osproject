@@ -101,4 +101,22 @@ int main()
     //cout<<"arrivalsort : "<<endl;
     //my_check( input ); // To check the sort unomment it
     total_exection_time = total_exection_time + input[0].A_time;
+    for( i= 0 ;i< n; i++ )
+    {
+    	if( total_exection_time >= input[i].A_time )
+    	{
+    		total_exection_time = total_exection_time +input[i].B_time;
+    	}
+    	else
+    	{
+    		int diff = (input[i].A_time - total_exection_time);
+    		total_exection_time = total_exection_time + diff + B_time;
+
+    	}
+    }
+
     
+	
+
+
+
