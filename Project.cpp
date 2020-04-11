@@ -90,9 +90,10 @@ int main()
 	int Burst_time;
 	int Process_id;
 	int Priority;
-	int n;
+	int n; // number of processes(or the test cases)
 	int Clock;
 	int total_execution_time = 0;
+	cout<<"Enter the number of cases which you wish to execute using this algorithm:";
 	cin>>n;
 	for( i= 0; i< n; i++ )
 	{
@@ -132,15 +133,16 @@ int main()
 
 	priority_queue < P_d ,vector<Process_Data> ,comPare> pq; //Priority Queue PQ
 
+	
 	queue< P_d > rq; //Round Robin Queue RQ
 	int cpu_state = 0; //idle if 0 then Idle if 1 the Busy
-	int quantum = 4; //Time Quantum
+	int quantum = 4 ; //Time Quantum
 	current.Process_id = -2;
 	current.Priority = 999999;
 
 	for ( Clock = 0; Clock< total_execution_time; Clock++ )
 	{
-		/*Insert the process with same Arrival time in Priority Queue*/
+		/**Insert the process with same Arrival time in Priority Queue**/
 		for( int j = 0; j< n ; j++ )
 		{
 			if(Clock == input[j].Arrival_time)
@@ -169,7 +171,7 @@ int main()
 				quantum = 4;
 			}
 		}
-		else if(cpu_state == 1) //If cpu has any process
+		else if(cpu_state == 1) //If cpu has any procss
 		{
 			if(pq_process == 1 && (!pq.empty()))
 			{
@@ -256,7 +258,7 @@ int main()
 
 	for(int i=0;i<n;i++)
 	{
-		input[i].Remaining_time=input[i].Start_time-input[i].Arrival_time;
+		input[i].Res_time=input[i].Start_time-input[i].Arrival_time;
 		input[i].Waiting_time=(input[i].Finish_time-input[i].Arrival_time)-input[i].Burst_time;
 
 	}
