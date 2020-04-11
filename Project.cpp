@@ -1,20 +1,25 @@
-#include <bits/stdc++.h>
+/*A scheduling program to implements a Queue with two levels:
+Level 1 : Fixed priority preemptive Scheduling
+Level 2 : Round Robin Scheduling
+*/
+#include <bits/stdc++.h> //header file that includes every standard library. This header file is used reduce the time of execution of the program
 using namespace std;
 
-struct Process_Data
+struct Process_Data // Declaring a stucture to 
 {
-	int Num;
-	int Pid;  //Process Id
-	int A_time; //Process Arrival Time
-	int B_time; //Process Bruest Time
-	int Priority; //Process Priority
-	int F_time; //Process Finish Time
-	int R_time; //Process Remaining  Time During Execution
-	int W_time; //Waiting Time
-	int S_time; //Process start Time
+	int Number;
+	int Process_id;    //Process Id
+	int Arrival_time; //Process Arrival Time
+	int Burst_time; //Process Brust Time
+	int Priority; //Process' Priority
+	int Finish_time; // Finish Time of process
+	int Remaining_time; //Process Remaining  Time During Execution
+	int Waiting_time; //Waiting Time
+	int Start_time; //Process start Time
 	int Res_time;
 
 };
+
 struct Process_Data current;
 typedef struct Process_Data P_d ;
 bool idsort(const P_d& x , const P_d& y)
