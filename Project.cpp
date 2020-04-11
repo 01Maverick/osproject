@@ -134,7 +134,7 @@ int main()
 
 	queue< P_d > rq; //Round Robin Queue RQ
 	int cpu_state = 0; //idle if 0 then Idle if 1 the Busy
-	int quantum = 2; //Time Quantum
+	int quantum = 4; //Time Quantum
 	current.Process_id = -2;
 	current.Priority = 999999;
 
@@ -158,7 +158,7 @@ int main()
 				cpu_state = 1;
 				pq_process = 1;
 				pq.pop();
-				quantum = 2; 
+				quantum = 4; 
 			}
 			else if(!rq.empty())
 			{
@@ -166,7 +166,7 @@ int main()
 				cpu_state = 1;
 				rq_process = 1;
 				rq.pop();
-				quantum = 2;
+				quantum = 4;
 			}
 		}
 		else if(cpu_state == 1) //If cpu has any process
@@ -178,7 +178,7 @@ int main()
 					rq.push(current); //push current in RQ
 					current = pq.top();
 					pq.pop();
-					quantum = 2; 
+					quantum = 4; 
 				}
 			}
 			else if(rq_process == 1 && (!pq.empty())) //If process is from RQ and new process come  in PQ
@@ -188,7 +188,7 @@ int main()
 				pq.pop();
 				rq_process = 0;
 				pq_process = 1;
-				quantum = 2 ;
+				quantum = 4 ;
 			}
 			
 
@@ -203,7 +203,7 @@ int main()
 			if(current.Remaining_time == 0) //If process Finish
 			{
 				cpu_state = 0 ;
-				quantum = 2 ;
+				quantum = 4 ;
 				current.Process_id = -2;
 				current.Priority = 999999;
 				rq_process = 0;
@@ -268,7 +268,5 @@ int main()
 	}	
 	return 0;
 }
-	
-
 
 
