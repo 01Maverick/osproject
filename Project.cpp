@@ -26,7 +26,7 @@ typedef struct Process_Data P_d ;
 
 bool idsort(const P_d& a , const P_d& b)
 {
-	return a.Pid < b.Pid;
+	return a.Process_id < b.Process_id;
 }
 /* Sorting is on the base of arrival time if that match then on Priority order of Priority, also  match than on the base of Process Id*/
 bool arrivalsort( const P_d& a ,const P_d& b) // Function to sort the the process at arrival
@@ -73,7 +73,7 @@ void my_check(vector<P_d> mv)
 {
 	for(unsigned int i= 0; i < mv.size() ;i++)
 	{
-		cout<<" Process ID:"<<mv[i].Pid<<" Arrival time : "<<mv[i].Arrival_time<<" Burst time: "<<mv[i].Burst_time<<" Priority: "<<mv[i].Priority<<endl;
+		cout<<" Process ID:"<<mv[i].Process_id<<" Arrival time : "<<mv[i].Arrival_time<<" Burst time: "<<mv[i].Burst_time<<" Priority: "<<mv[i].Priority<<endl;
 	}
 
 }
@@ -100,7 +100,7 @@ int main()
 		temp.Number = i+1;
 		temp.Arrival_time = Arrival_time;
 		temp.Burst_time = Burst_time;
-		temp.R_time = Burst_time;
+		temp.Remaining_time = Burst_time;
 		temp.Process_id = Process_id;
 		temp.Priority = Priority;
 		input.push_back(temp);
@@ -109,7 +109,7 @@ int main()
 	sort( input.begin(), input.end(), arrivalsort );
     //cout<<"arrivalsort : "<<endl;
     //my_check( input ); // To check the sort unomment it
-    total_execution_time = total_execution_time + input[0].A_time;
+    total_execution_time = total_execution_time + input[0].Arrival_time;
     for( i= 0 ;i< n; i++ )
     {
     	if( total_execution_time >= input[i].Arrival_time )
@@ -134,16 +134,16 @@ int main()
 
 	queue< P_d > rq; //Round Robin Queue RQ
 	int cpu_state = 0; //idle if 0 then Idle if 1 the Busy
-	int quantum = 4 ; //Time Quantum
+	int quantum = 2; //Time Quantum
 	current.Process_id = -2;
 	current.Priority = 999999;
 
-	for ( clock = 0; clock< total_execution_time; clock++ )
+	for ( Clock = 0; Clock< total_execution_time; Clock++ )
 	{
 		/*Insert the process with same Arrival time in Priority Queue*/
 		for( int j = 0; j< n ; j++ )
 		{
-			if(clock == input[j].Arrival_time)
+			if(Clock == input[j].Arrival_time)
 			{
 				pq.push(input[j]);
 			}
@@ -158,7 +158,7 @@ int main()
 				cpu_state = 1;
 				pq_process = 1;
 				pq.pop();
-				quantum = 4; 
+				quantum = 2; 
 			}
 			else if(!rq.empty())
 			{
@@ -166,7 +166,7 @@ int main()
 				cpu_state = 1;
 				rq_process = 1;
 				rq.pop();
-				quantum = 4;
+				quantum = 2;
 			}
 		}
 		else if(cpu_state == 1) //If cpu has any process
@@ -178,7 +178,7 @@ int main()
 					rq.push(current); //push current in RQ
 					current = pq.top();
 					pq.pop();
-					quantum = 4; 
+					quantum = 2; 
 				}
 			}
 			else if(rq_process == 1 && (!pq.empty())) //If process is from RQ and new process come  in PQ
@@ -188,7 +188,7 @@ int main()
 				pq.pop();
 				rq_process = 0;
 				pq_process = 1;
-				quantum = 4 ;
+				quantum = 2 ;
 			}
 			
 
@@ -197,13 +197,13 @@ int main()
 
 		if(current.Process_id != -2) // Process Execution
 		{
-			current.R_time--;
+			current.Remaining_time--;
 			quantum--;
-			Ghant[clock] = current.Process_id;
-			if(current.R_time == 0) //If process Finish
+			Ghant[Clock] = current.Process_id;
+			if(current.Remaining_time == 0) //If process Finish
 			{
 				cpu_state = 0 ;
-				quantum = 4 ;
+				quantum = 2 ;
 				current.Process_id = -2;
 				current.Priority = 999999;
 				rq_process = 0;
@@ -256,7 +256,7 @@ int main()
 
 	for(int i=0;i<n;i++)
 	{
-		input[i].Remaining_time=input[i].S_time-input[i].Arrival_time;
+		input[i].Remaining_time=input[i].Start_time-input[i].Arrival_time;
 		input[i].Waiting_time=(input[i].Finish_time-input[i].Arrival_time)-input[i].Burst_time;
 
 	}
@@ -268,7 +268,6 @@ int main()
 	}	
 	return 0;
 }
-    
 	
 
 
