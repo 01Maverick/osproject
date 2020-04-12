@@ -96,7 +96,7 @@ int main()
 	cout<<"Enter the number of cases which you wish to execute using this algorithm:";
 	cin>>n;
 	for( i= 0; i< n; i++ )
-	{	cout<<"Enter the process ID, Arrival time, Burst time and Priority:(process number)"<<i+1;
+	{	cout<<"Enter the process ID, Arrival time, Burst time and Priority:"<<i+1<<": ";
 		cin>>Process_id>>Arrival_time>>Burst_time>>Priority;
 		temp.Number = i+1;
 		temp.Arrival_time = Arrival_time;
@@ -128,7 +128,6 @@ int main()
 	{
 		Ghant[i]=-1;
 	}
-	//cout<<"total_exection_time : "<<total_exection_time<<endl;
 
 	priority_queue < P_d ,vector<Process_Data> ,comPare> pq; //Priority Queue PQ
 
