@@ -96,7 +96,7 @@ int main()
 	cout<<"Enter the number of cases which you wish to execute using this algorithm:";
 	cin>>n;
 	for( i= 0; i< n; i++ )
-	{
+	{	cout<<"Enter the process ID, Arrival time, Burst time and Priority:(process number)"<<i+1;
 		cin>>Process_id>>Arrival_time>>Burst_time>>Priority;
 		temp.Number = i+1;
 		temp.Arrival_time = Arrival_time;
@@ -108,8 +108,7 @@ int main()
 	}
 	input_copy = input;
 	sort( input.begin(), input.end(), arrivalsort );
-    //cout<<"arrivalsort : "<<endl;
-    //my_check( input ); // To check the sort unomment it
+
     total_execution_time = total_execution_time + input[0].Arrival_time;
     for( i= 0 ;i< n; i++ )
     {
